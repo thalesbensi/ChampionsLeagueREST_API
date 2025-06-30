@@ -1,23 +1,71 @@
 import {PlayerModel} from "../models/PlayerModel";
 
-const fakeDB: PlayerModel[] = [
-    { id: 1, name: "Messi" },
-    { id: 2, name: "Cristiano Ronaldo" },
-    { id: 3, name: "Neymar Jr" },
-    { id: 4, name: "Kylian Mbappé" },
-    { id: 5, name: "Erling Haaland" },
-    { id: 6, name: "Kevin De Bruyne" },
-    { id: 7, name: "Vinícius Júnior" },
-    { id: 8, name: "Mohamed Salah" },
-    { id: 9, name: "Luka Modrić" },
-    { id: 10, name: "Robert Lewandowski" },
-    { id: 11, name: "Harry Kane" },
-    { id: 12, name: "Antoine Griezmann" },
-    { id: 13, name: "Pedri" },
-    { id: 14, name: "Jude Bellingham" },
-    { id: 15, name: "Bernardo Silva" }
+const fakeDB = [
+    {
+        id: 1,
+        name: "David Beckham",
+        club: "Retired",
+        nationality: "England",
+        position: "Midfielder",
+        statistics: {
+            Overall: 85,
+            Pace: 76,
+            Shooting: 82,
+            Passing: 90,
+            Dribbling: 84,
+            Defending: 70,
+            Physical: 72,
+        },
+    },
+    {
+        id: 2,
+        name: "Lionel Messi",
+        club: "PSG",
+        nationality: "Argentina",
+        position: "Forward",
+        statistics: {
+            Overall: 93,
+            Pace: 85,
+            Shooting: 92,
+            Passing: 91,
+            Dribbling: 95,
+            Defending: 38,
+            Physical: 65,
+        },
+    },
+    {
+        id: 3,
+        name: "Cristiano Ronaldo",
+        club: "Al Nassr",
+        nationality: "Portugal",
+        position: "Forward",
+        statistics: {
+            Overall: 92,
+            Pace: 87,
+            Shooting: 93,
+            Passing: 82,
+            Dribbling: 89,
+            Defending: 35,
+            Physical: 79,
+        },
+    },
+    {
+        id: 4,
+        name: "Neymar Jr",
+        club: "PSG",
+        nationality: "Brazil",
+        position: "Forward",
+        statistics: {
+            Overall: 91,
+            Pace: 91,
+            Shooting: 85,
+            Passing: 87,
+            Dribbling: 94,
+            Defending: 32,
+            Physical: 58,
+        },
+    }
 ];
-
 
 export const findAllPlayers = async(): Promise<PlayerModel[]> => {
     return fakeDB;
@@ -25,4 +73,9 @@ export const findAllPlayers = async(): Promise<PlayerModel[]> => {
 
 export const findPlayerById = async(id: number): Promise<PlayerModel | undefined> => {
     return fakeDB.find(player => player.id === id);
+}
+
+export const createPlayer = async (player:PlayerModel) => {
+    fakeDB.push(player);
+    return player;
 }
