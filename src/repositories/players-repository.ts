@@ -79,3 +79,10 @@ export const createPlayer = async (player:PlayerModel) => {
     fakeDB.push(player);
     return player;
 }
+
+export const deletePlayer = async (id:number) => {
+    const index = fakeDB.findIndex(player => player.id === id);
+    if (index > -1) {
+        fakeDB.splice(index, 1);
+    }
+}
