@@ -9,5 +9,5 @@ router.post('/players', PlayerController.postPlayer);
 router.patch('/players/:id', PlayerController.updatePlayer);
 router.delete('/players/:id', PlayerController.deletePlayer);
 
-router.get('/clubs', ClubController.getAllClubs);
+/*router.get('/clubs', ClubController.getAllClubs);*/
 export default router;
