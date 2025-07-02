@@ -1,5 +1,6 @@
 import {Request, Response} from "express";
 import * as PlayerService from "../services/players-service";
+import {PlayerModel} from "../models/PlayerModel";
 
 export const getAllPlayers = async (req: Request, res: Response) => {
     const httpResponse = await PlayerService.findAllPlayers()
@@ -17,6 +18,13 @@ export const postPlayer = async (req: Request, res: Response) => {
     const httpResponse = await PlayerService.createPlayer(bodyValue);
     res.status(httpResponse.statusCode).json(httpResponse.body)
 };
+
+export const updatePlayer = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const bodyValue: PlayerModel = req.body;
+    const httpResponse = await PlayerService.updatePlayer(id, bodyValue);
+    res.status(httpResponse.statusCode).json(httpResponse.body);
+}
 
 export const deletePlayer = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
