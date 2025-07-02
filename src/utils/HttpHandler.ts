@@ -19,7 +19,7 @@ export const created = async (data:any): Promise<HttpResponse> => {
 export const noContent = async (): Promise<HttpResponse> => {
     return {
         statusCode: 204,
-        body: null
+        body: "Deleted"
     };
 };
 
@@ -33,6 +33,6 @@ export const badRequest = async (): Promise<HttpResponse> => {
 export const notFound = async (): Promise<HttpResponse> => {
     return {
         statusCode: 404,
-        body: null
+        body: "Resource not found"
     }
 }
