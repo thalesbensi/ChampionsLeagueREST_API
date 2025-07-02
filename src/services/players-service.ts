@@ -23,14 +23,27 @@ export const createPlayer = async (player: PlayerModel) => {
     let response = null;
     if (player) {
         await PlayerRepository.createPlayer(player);
-        response = httpResponse.created(player);
+        response = await httpResponse.created(player);
     } else response = await httpResponse.badRequest();
     return response;
 };
 
+export const updatePlayer = async (id: number, player: PlayerModel) => {
+    const data = await PlayerRepository.findAndModify(id, player);
+    if (!data) {
+        return httpResponse.notFound();
+    }
+    return httpResponse.ok(data);
+};
+
+
 export const deletePlayer = async (id: number) => {
     let response = null;
-    await PlayerRepository.deletePlayer(id);
-    response = httpResponse.noContent();
+    const isDeleted = await PlayerRepository.deletePlayer(id);
+    if (isDeleted) {
+        response = httpResponse.noContent()
+    } else {
+        response = await httpResponse.notFound()
+    }
     return response;
 }
