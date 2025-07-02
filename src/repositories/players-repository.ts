@@ -80,9 +80,22 @@ export const createPlayer = async (player:PlayerModel) => {
     return player;
 }
 
+export const findAndModify = async (id: number, player: PlayerModel) => {
+    const playerIndex = fakeDB.findIndex(p => p.id === id);
+
+    if (playerIndex !== -1) {
+        fakeDB[playerIndex] = { ...fakeDB[playerIndex], ...player };
+        return fakeDB[playerIndex];
+    }
+};
+
+
 export const deletePlayer = async (id:number) => {
     const index = fakeDB.findIndex(player => player.id === id);
     if (index > -1) {
         fakeDB.splice(index, 1);
+        return true
+    } else {
+        return false;
     }
 }
